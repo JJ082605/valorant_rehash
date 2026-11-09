@@ -1,0 +1,17 @@
+{
+  "data": {"roamingSetttingsVersion": 1},
+  "floatSettings": [
+    {"settingEnum": "EAresFloatSettingName::MouseSensitivity", "value": 0.35},
+    {"settingEnum": "EAresFloatSettingName::MouseSensitivityADS", "value": 1.0}
+  ],
+  "stringSettings": [
+    {"settingEnum": "EAresStringSettingName::SavedCrosshairProfileData", "value": "{\"currentProfile\":0,\"profiles\":[{\"profileName\":\"Dot\",\"primary\":{\"color\":{\"r\":0,\"g\":255,\"b\":255,\"a\":255},\"bHasCenterDot\":true}}]}"}
+  ],
+  "boolSettings": [
+    {"settingEnum": "EAresBoolSettingName::ShowBloodAndGore", "value": false}
+  ],
+  "actionMappings": [
+    {"name": "Ability1", "key": "E", "alt": false, "bindIndex": 0, "characterTilde": false},
+    {"name": "Jump", "key": "SpaceBar", "alt": false, "bindIndex": 0, "characterTilde": false}
+  ]
+}

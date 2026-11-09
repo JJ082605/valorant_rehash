@@ -1,0 +1,5 @@
+{
+  "enabledPlugins": {
+    "claude-md-management@anthropic-plugin-directory": true
+  }
+}
