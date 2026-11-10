@@ -35,6 +35,10 @@ Download `ValoSettings.exe` from [Releases](../../releases) and run it.
 
 Some antivirus programs flag PyInstaller-built `.exe` files by mistake. If you'd rather not trust the download, build it yourself (below).
 
+The `.exe` isn't code-signed, so Windows may warn you:
+- **"Windows protected your PC"** (SmartScreen): click **More info → Run anyway**.
+- **"An Application Control policy has blocked this file"** or the app silently won't open: **Smart App Control** is on. It blocks all unsigned apps, and there's no per-app exception. Run from source instead (below).
+
 ## Build from source
 
 Requires Python 3.11+ with Tk.
@@ -45,7 +49,7 @@ python -m venv .venv
 pip install -e ".[dev]"
 python -m valo_settings          # run
 pytest -q                        # tests (run anywhere, no Riot Client needed)
-pyinstaller --onefile --windowed --name ValoSettings --collect-data customtkinter src/valo_settings/__main__.py
+pyinstaller --onefile --windowed --name ValoSettings --collect-data customtkinter --paths src scripts/launcher.py
 ```
 
 The `.exe` is written to `dist/`.
