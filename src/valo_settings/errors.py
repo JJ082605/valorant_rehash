@@ -35,6 +35,10 @@ class BackupFailed(ValoError):
     default_message = "Couldn't save a backup of the current settings, so nothing was changed."
 
 
+class SettingsServerError(ValoError):
+    default_message = "Riot's settings server returned an error. Try again in a minute."
+
+
 class ProfileError(ValoError):
     default_message = "Profile error."
 

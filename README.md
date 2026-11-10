@@ -2,7 +2,7 @@
 
 Copy your VALORANT settings (sensitivity, crosshair, keybinds, HUD) from one Riot account to another on the same Windows PC.
 
-**It never asks for your password.** It talks only to the Riot Client that's already open and signed in on your PC.
+**It never asks for your password.** It uses the Riot Client that's already open and signed in on your PC.
 
 ## How it works
 
@@ -14,13 +14,13 @@ Copy your VALORANT settings (sensitivity, crosshair, keybinds, HUD) from one Rio
 ### Why no password?
 
 While the Riot Client is running, it writes a *lockfile* to
-`%LOCALAPPDATA%\Riot Games\Riot Client\Config\lockfile`. The lockfile holds a local port and a random password for that session. That password only works for connections from your own PC (`127.0.0.1`) and is **not** your Riot password. This app reads the lockfile and asks the local Riot Client for the signed-in account's settings.
+`%LOCALAPPDATA%\Riot Games\Riot Client\Config\lockfile`. The lockfile holds a local port and a random password for that session. That password only works for connections from your own PC (`127.0.0.1`) and is **not** your Riot password. This app reads the lockfile and asks the local Riot Client who is signed in and for a short-lived sign-in token. It then uses that token to read and save the account's settings on Riot's own settings server (`player-preferences-euc1.pp.sgp.pvp.net`), the same way the game does.
 
 You can check this yourself. All network code is in two small files:
 - [`riot_client.py`](src/valo_settings/riot_client.py) reads the lockfile and the signed-in account.
 - [`preferences.py`](src/valo_settings/preferences.py) reads and writes settings.
 
-The lockfile password is kept in memory only. It's never saved, and it's removed from the log.
+The lockfile password and tokens are kept in memory only. They're never saved, and they're removed from the log.
 
 ## ⚠ Caveats
 

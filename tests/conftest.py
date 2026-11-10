@@ -1,11 +1,14 @@
 import json
 from pathlib import Path
+from urllib.parse import urlsplit
 
 import pytest
 
+from valo_settings.preferences import encode_settings
 from valo_settings.profiles import ProfileStore
 
 FIXTURES = Path(__file__).parent / "fixtures"
+TOKENS = {"accessToken": "access-tok", "token": "entitlement-tok", "subject": "p-1"}
 
 
 class FakeResponse:
@@ -22,6 +25,11 @@ class FakeResponse:
 
 def resp(status_code=200, body=None, is_json=True):
     return FakeResponse(status_code, body, is_json)
+
+
+def server_settings(settings):
+    """A settings-server GET response carrying `settings`."""
+    return resp(200, {"type": "Ares.PlayerSettings", "data": encode_settings(settings), "modified": 1})
 
 
 class FakeHttp:
@@ -45,7 +53,7 @@ class FakeHttp:
 
     @property
     def methods(self):
-        return [(m, url.split("127.0.0.1:55555", 1)[-1]) for m, url, _ in self.calls]
+        return [(m, urlsplit(url).path) for m, url, _ in self.calls]
 
 
 @pytest.fixture

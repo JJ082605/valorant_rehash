@@ -28,7 +28,7 @@ def main() -> None:
         sys.exit(1)
 
     http = requests.Session()
-    http.trust_env = False  # ignore system proxies; we only ever talk to 127.0.0.1
+    http.trust_env = False  # ignore system proxies so tokens and the lockfile password never pass through one
     App(Applier(http, ProfileStore(base))).mainloop()
 
 
